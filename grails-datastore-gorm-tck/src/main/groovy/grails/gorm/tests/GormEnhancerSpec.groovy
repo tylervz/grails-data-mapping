@@ -94,6 +94,12 @@ class GormEnhancerSpec extends GormDatastoreSpec {
 
         then:
             2 == results.size()
+
+        when:
+            results = TestEntity.getAll([ids[0],ids[1]])
+
+        then:
+            2 == results.size()
     }
 
     void "Test ident() method"() {
@@ -219,7 +225,7 @@ class GormEnhancerSpec extends GormDatastoreSpec {
             def t
 
         when:
-            t= new TestEntity(name:"Bob", child:new ChildEntity(name:"Child"))
+            t = new TestEntity(name:"Bob", child:new ChildEntity(name:"Child"))
             t.save()
 
         then:

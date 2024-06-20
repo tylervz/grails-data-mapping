@@ -582,7 +582,7 @@ trait GormEntity<D> implements GormValidateable, DirtyCheckable, GormEntityApi<D
      * @param ids The identifiers to operate against
      * @return A list of identifiers
      */
-    static List<D> getAll(Iterable<Serializable> ids) {
+    static List<D> getAll(Iterable<? extends Serializable> ids) {
         currentGormStaticApi().getAll ids
     }
 

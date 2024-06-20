@@ -133,7 +133,7 @@ interface GormStaticOperations<D> {
      * @param ids The identifiers to operate against
      * @return A list of identifiers
      */
-    List<D> getAll(Iterable<Serializable> ids)
+    List<D> getAll(Iterable<? extends Serializable> ids)
 
     /**
      * Retrieve all the objects for the given identifiers

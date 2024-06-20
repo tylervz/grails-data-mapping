@@ -262,7 +262,7 @@ class TenantDelegatingGormOperations<D> implements GormAllOperations<D> {
     }
 
     @Override
-    List<D> getAll(Iterable<Serializable> ids) {
+    List<D> getAll(Iterable<? extends Serializable> ids) {
         Tenants.withId((Class<Datastore>)datastore.getClass(), tenantId) {
             allOperations.getAll(ids)
         }
