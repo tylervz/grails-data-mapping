@@ -383,7 +383,7 @@ class JpaUser {
 }
 
 
-@Entity
+//@Entity
 //class JpaCompositeIdEntity {
 //    @Id
 //    Long first
@@ -392,7 +392,7 @@ class JpaUser {
 //    String name
 //}
 
-//@Entity
+@Entity
 class JpaSimpleEntity {
     @Id
     Long id
