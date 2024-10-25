@@ -8,7 +8,6 @@ import grails.persistence.Entity
 /**
  * @author graemerocher
  */
-@Ignore("https://issues.apache.org/jira/browse/GROOVY-5106 - The interface GormEntity cannot be implemented more than once with different arguments: org.grails.datastore.gorm.GormEntity<grails.gorm.tests.XXX> and org.grails.datastore.gorm.GormEntity<grails.gorm.tests.XXX>")
 class BidirectionalOneToManyWithInheritanceSpec extends GormDatastoreSpec {
 
     void "Test a bidirectional one-to-many association with inheritance"() {
@@ -34,7 +33,7 @@ class BidirectionalOneToManyWithInheritanceSpec extends GormDatastoreSpec {
     }
 }
 
-//@Entity
+@Entity
 class ConfigurationItem {
     Long id
     Long version
