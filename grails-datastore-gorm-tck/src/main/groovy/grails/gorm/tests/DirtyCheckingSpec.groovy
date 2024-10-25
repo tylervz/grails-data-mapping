@@ -151,7 +151,7 @@ class DirtyCheckingSpec extends GormDatastoreSpec {
         TestAuthor.deleteAll()
     }
 
-    @IgnoreIf({ Boolean.getBoolean("hibernate5.gorm.suite")}) // because one-to-one association loads eagerly in the Hibernate
+    @IgnoreIf({ Boolean.getBoolean("hibernate5.gorm.suite") || Boolean.getBoolean("hibernate6.gorm.suite")}) // because one-to-one association loads eagerly in the Hibernate
     void "test initialized proxy is not marked as dirty"() {
 
         given:
