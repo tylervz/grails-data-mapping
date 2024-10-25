@@ -1,5 +1,7 @@
 package grails.gorm.services
 
+import grails.gorm.annotation.Entity
+import jakarta.validation.constraints.NotNull
 import org.grails.datastore.gorm.validation.jakarta.services.ValidatedService
 import org.grails.datastore.mapping.validation.ValidationException
 import spock.lang.Specification
@@ -79,12 +81,12 @@ class Foo {
     }
 }
 
-//@Service(Foo)
-//interface MyService {
-//
-//    Foo find(@NotNull String title)
-//}
-//@Entity
-//class Foo {
-//    String title
-//}
+@Service(Foo)
+interface MyService {
+
+    Foo find(@NotNull String title)
+}
+@Entity
+class Foo {
+    String title
+}

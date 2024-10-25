@@ -384,19 +384,19 @@ return Book.classLoader
     }
 }
 
-//@Entity
-//class Book {
-//  String title
-//}
-//
-//
-//@Service(Book)
-//abstract class BookService {
-//    abstract Observable<Book> find(String title)
-//
-//    Observable<Book> findOne(title) {
-//        RxServiceSupport.create {
-//            Book.findWhere(title:title)
-//        }
-//    }
-//}
+@Entity
+class Book {
+  String title
+}
+
+
+@Service(Book)
+abstract class BookService {
+    abstract Observable<Book> find(String title)
+
+    Observable<Book> findOne(title) {
+        RxServiceSupport.create {
+            Book.findWhere(title:title)
+        }
+    }
+}
