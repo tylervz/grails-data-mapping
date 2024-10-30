@@ -1,7 +1,5 @@
 package org.grails.compiler.gorm
 
-import spock.lang.Ignore
-
 import org.grails.datastore.mapping.keyvalue.mapping.config.KeyValueMappingContext
 import org.grails.datastore.mapping.keyvalue.mapping.config.KeyValuePersistentEntity
 import org.grails.datastore.mapping.model.MappingContext

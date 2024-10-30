@@ -1,7 +1,5 @@
 package org.grails.datastore.gorm.validation
 
-import spock.lang.Ignore
-
 import grails.gorm.annotation.Entity
 import grails.gorm.transactions.Transactional
 import org.grails.datastore.gorm.validation.constraints.MappingContextAwareConstraintFactory

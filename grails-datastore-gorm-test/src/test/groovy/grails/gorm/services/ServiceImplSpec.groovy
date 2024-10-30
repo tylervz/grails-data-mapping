@@ -1,11 +1,10 @@
 package grails.gorm.services
 
-import spock.lang.Ignore
-
 import grails.gorm.annotation.Entity
 import grails.gorm.validation.PersistentEntityValidator
 import grails.validation.ValidationException
-import groovy.json.JsonOutput
+import groovy.json.DefaultJsonGenerator
+import groovy.json.JsonGenerator
 import org.grails.datastore.gorm.validation.constraints.eval.DefaultConstraintEvaluator
 import org.grails.datastore.gorm.validation.constraints.registry.DefaultConstraintRegistry
 import org.grails.datastore.gorm.validation.constraints.registry.DefaultValidatorRegistry
@@ -309,27 +308,6 @@ class ServiceImplSpec extends Specification {
 
     }
 
-    @Ignore('''
-            java.lang.StackOverflowError
-            at groovy.lang.Closure.call(Closure.java:435)
-            at org.grails.datastore.mapping.core.DatastoreUtils.execute(DatastoreUtils.java:319)
-            at org.grails.datastore.gorm.AbstractDatastoreApi.execute(AbstractDatastoreApi.groovy:40)
-            at org.grails.datastore.gorm.GormInstanceApi.isAttached(GormInstanceApi.groovy:227)
-            at org.grails.datastore.gorm.GormEntity$Trait$Helper.isAttached(GormEntity.groovy:176)
-            at groovy.lang.MetaBeanProperty.getProperty(MetaBeanProperty.java:60)
-            at groovy.json.DefaultJsonGenerator.getObjectProperties(DefaultJsonGenerator.java:257)
-            at groovy.json.DefaultJsonGenerator.writeObject(DefaultJsonGenerator.java:234)
-            at groovy.json.DefaultJsonGenerator.writeMapEntry(DefaultJsonGenerator.java:401)
-            at groovy.json.DefaultJsonGenerator.writeMap(DefaultJsonGenerator.java:389)
-            at groovy.json.DefaultJsonGenerator.writeObject(DefaultJsonGenerator.java:204)
-            at groovy.json.DefaultJsonGenerator.writeMapEntry(DefaultJsonGenerator.java:401)
-            at groovy.json.DefaultJsonGenerator.writeMap(DefaultJsonGenerator.java:389)
-            at groovy.json.DefaultJsonGenerator.writeObject(DefaultJsonGenerator.java:235)
-            at groovy.json.DefaultJsonGenerator.writeMapEntry(DefaultJsonGenerator.java:401)
-            at groovy.json.DefaultJsonGenerator.writeMap(DefaultJsonGenerator.java:389)
-            at groovy.json.DefaultJsonGenerator.writeObject(DefaultJsonGenerator.java:235)
-            at groovy.json.DefaultJsonGenerator.writeMapEntry(DefaultJsonGenerator.java:401)
-            at groovy.json.DefaultJsonGenerator.writeMap(DefaultJsonGenerator.java:389)''')
     void "test interface projection"() {
         given:
         ProductService productService = datastore.getService(ProductService)
@@ -341,7 +319,9 @@ class ServiceImplSpec extends Specification {
 
         ProductInfo info = productService.findProductInfo("Pumpkin", "Vegetable")
         List<ProductInfo> infos = productService.findProductInfos( "Vegetable")
-        def result = JsonOutput.toJson(info)
+
+        // groovy4 will include the generated methods in output of json, which recursively refer to themselves
+        def result = new DefaultJsonGenerator(new JsonGenerator.Options().excludeFieldsByName("\$target")).toJson(info)
         then:
         infos.size() == 2
         infos.first().name == "Carrot"
