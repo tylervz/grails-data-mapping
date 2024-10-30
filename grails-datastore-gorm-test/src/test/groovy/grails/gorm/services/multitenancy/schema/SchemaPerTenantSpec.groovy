@@ -12,7 +12,6 @@ import org.grails.datastore.mapping.multitenancy.exceptions.TenantNotFoundExcept
 import org.grails.datastore.mapping.multitenancy.resolvers.SystemPropertyTenantResolver
 import org.grails.datastore.mapping.simple.SimpleMapDatastore
 import spock.lang.AutoCleanup
-import spock.lang.PendingFeature
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -30,7 +29,6 @@ class SchemaPerTenantSpec extends Specification {
         System.setProperty(SystemPropertyTenantResolver.PROPERTY_NAME, "")
     }
 
-    @PendingFeature(reason="java.lang.IllegalStateException: Either class [grails.gorm.services.multitenancy.schema.Book] is not a domain class or GORM has not been initialized correctly or has already been shutdown. Ensure GORM is loaded and configured correctly before calling any methods on a GORM entity.")
     void 'Test schema per tenant'() {
         when:"When there is no tenant"
         Book.count()
