@@ -1,7 +1,5 @@
 package org.grails.datastore.gorm
 
-import spock.lang.Ignore
-
 import grails.gorm.tests.GormDatastoreSpec
 import grails.persistence.Entity
 

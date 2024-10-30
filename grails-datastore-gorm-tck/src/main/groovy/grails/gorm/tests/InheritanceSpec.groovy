@@ -1,7 +1,5 @@
 package grails.gorm.tests
 
-import spock.lang.Ignore
-
 import grails.persistence.Entity
 
 /**
