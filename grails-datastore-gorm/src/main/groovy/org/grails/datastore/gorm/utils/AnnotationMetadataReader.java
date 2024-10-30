@@ -17,6 +17,7 @@ package org.grails.datastore.gorm.utils;
 
 import org.springframework.asm.AnnotationVisitor;
 import org.springframework.asm.SpringAsmInfo;
+import org.springframework.core.annotation.AnnotationFilter;
 import org.springframework.core.io.Resource;
 import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.core.type.ClassMetadata;
@@ -43,8 +44,8 @@ public class AnnotationMetadataReader implements MetadataReader {
      * @param resource The resource
      * @throws IOException
      */
-    AnnotationMetadataReader(Resource resource) throws IOException {
-        this.annotationMetadata = AnnotationMetadata.introspect(resource.getClass());
+    AnnotationMetadataReader(Resource resource, AnnotationFilter filter) throws IOException {
+        this.annotationMetadata = new FilteredAnnotationMetadata(resource.getClass(), filter);
         // since AnnotationMetadata extends ClassMetadata
         this.classMetadata = this.annotationMetadata;
         this.resource = resource;

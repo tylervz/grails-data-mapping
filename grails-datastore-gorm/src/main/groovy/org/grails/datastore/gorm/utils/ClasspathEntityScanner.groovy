@@ -1,4 +1,5 @@
-/* Copyright 2016 the original author or authors.
+/*
+ * Copyright 2016-2024 original authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -66,7 +67,7 @@ class ClasspathEntityScanner {
      */
     Class[] scan(Package... packages) {
         ClassPathScanningCandidateComponentProvider componentProvider = new ClassPathScanningCandidateComponentProvider(false)
-        componentProvider.setMetadataReaderFactory(new AnnotationMetadataReaderFactory(classLoader))
+        componentProvider.setMetadataReaderFactory(new EntityAnnotationMetadataReaderFactory(classLoader))
         for(ann in annotations) {
             componentProvider.addIncludeFilter(new AnnotationTypeFilter(ann))
         }
