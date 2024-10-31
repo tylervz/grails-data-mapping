@@ -128,7 +128,7 @@ subprojects {
             documentation "info.picocli:picocli:$picocliVersion"
             documentation ("com.github.javaparser:javaparser-core:$javaParserCoreVersion")
 
-            api "org.apache.groovy:groovy:$groovyVersion"
+            implementation "org.apache.groovy:groovy:$groovyVersion"
             testImplementation "org.apache.groovy:groovy-test-junit5:$groovyVersion"
             testImplementation "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"
             testImplementation "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
