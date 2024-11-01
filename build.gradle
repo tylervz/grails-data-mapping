@@ -101,11 +101,7 @@ subprojects {
 
     }
 
-    java {
-        toolchain {
-            languageVersion = JavaLanguageVersion.of(17)
-        }
-    }
+    compileJava.options.release = 17
 
     def isGormDatasource = project.name.startsWith("grails-datastore-gorm-") &&
                                 !project.name.endsWith("tck") &&
@@ -128,7 +124,7 @@ subprojects {
             documentation "info.picocli:picocli:$picocliVersion"
             documentation ("com.github.javaparser:javaparser-core:$javaParserCoreVersion")
 
-            implementation "org.apache.groovy:groovy:$groovyVersion"
+            compileOnly "org.apache.groovy:groovy:$groovyVersion"
             testImplementation "org.apache.groovy:groovy-test-junit5:$groovyVersion"
             testImplementation "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"
             testImplementation "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
