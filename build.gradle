@@ -20,8 +20,6 @@ ext {
     nexusPassword = System.getenv("SONATYPE_PASSWORD") ?: project.hasProperty("sonatypeOssPassword") ? project.sonatypeOssPassword : ''
 }
 
-def spockDependency = "org.spockframework:spock-core:$spockVersion"
-
 def isGroovyProject(project) {
     !project.name.contains("grails-plugins")
 }
@@ -113,32 +111,33 @@ subprojects {
 
 
     dependencies {
-        implementation platform("org.grails:grails-bom:$grailsVersion")
+        api platform("org.grails:grails-bom:$grailsVersion")
         api "jakarta.annotation:jakarta.annotation-api:$jakartaAnnotationApiVersion"
-        implementation "jakarta.validation:jakarta.validation-api:$jakartaValidationVersion"
-        compileOnly "com.github.spotbugs:spotbugs-annotations:$jsr305Version"
+        implementation "jakarta.validation:jakarta.validation-api"
+        compileOnly "com.github.spotbugs:spotbugs-annotations"
 
         if (isStandardGroovyMavenProject) {
-            documentation "org.fusesource.jansi:jansi:$jansiVersion"
+            documentation platform("org.grails:grails-bom:$grailsVersion")
+            documentation "org.fusesource.jansi:jansi"
             documentation "org.apache.groovy:groovy-dateutil:$groovyVersion"
             documentation "info.picocli:picocli:$picocliVersion"
-            documentation ("com.github.javaparser:javaparser-core:$javaParserCoreVersion")
+            documentation "com.github.javaparser:javaparser-core"
 
             compileOnly "org.apache.groovy:groovy:$groovyVersion"
             testImplementation "org.apache.groovy:groovy-test-junit5:$groovyVersion"
-            testImplementation "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"
-            testImplementation "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
-            testImplementation "org.junit.platform:junit-platform-runner:$junitJupiterPlatformVersion"
+            testImplementation "org.junit.jupiter:junit-jupiter-api"
+            testImplementation "org.junit.jupiter:junit-jupiter-engine"
+            testImplementation "org.junit.platform:junit-platform-runner"
 
-            testImplementation(spockDependency) { transitive = false }
+            testImplementation "org.spockframework:spock-core"
         }
 
         if (project.name == "grails-datastore-gorm-tck") {
             api "org.apache.groovy:groovy-test-junit5:$groovyVersion"
-            api "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"
-            api "org.junit.platform:junit-platform-runner:$junitJupiterPlatformVersion"
-            runtimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
-            implementation(spockDependency) { transitive = false }
+            api "org.junit.jupiter:junit-jupiter-api"
+            api "org.junit.platform:junit-platform-runner"
+            runtimeOnly "org.junit.jupiter:junit-jupiter-engine"
+            implementation "org.spockframework:spock-core"
         }
     }
 
@@ -248,8 +247,8 @@ configurations {
 
 dependencies {
     build "org.openclover:clover:$cloverVersion"
-    build "org.apache.ant:ant-junit:$antVersion"
-    build "org.apache.ant:ant:$antVersion"
+    build "org.apache.ant:ant-junit"
+    build "org.apache.ant:ant"
 }
 
 task install(dependsOn: subprojects*.tasks*.withType(PublishToMavenLocal))

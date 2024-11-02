@@ -1,8 +1,8 @@
 dependencies {
-    api "org.springframework:spring-expression:$springVersion"
+    api "org.springframework:spring-expression"
     api project(":grails-datastore-gorm-async")
     api project(":grails-datastore-gorm-support")
-    api("jakarta.servlet:jakarta.servlet-api:$servletApiVersion")
+    api("jakarta.servlet:jakarta.servlet-api")
     runtimeOnly "org.apache.groovy:groovy-dateutil:$groovyVersion"
 }
 

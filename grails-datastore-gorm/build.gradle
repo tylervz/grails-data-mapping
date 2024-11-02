@@ -2,7 +2,7 @@ dependencies {
     api project(":grails-datastore-core")
     api project(":grails-datastore-gorm-validation")
 
-    implementation "org.slf4j:slf4j-api:$slf4jVersion"
+    implementation "org.slf4j:slf4j-api"
     
     // :grails-datastore-gorm:compileGroovy requires jakarta.el.ExpressionFactory
     // required by gorm-hibernate5 test compilation 
@@ -10,11 +10,11 @@ dependencies {
     runtimeOnly "org.glassfish:jakarta.el:$jakartaElGlassfishImplVersion"
 
     compileOnly("org.hibernate:hibernate-validator:$hibernateValidatorVersion")
-    compileOnly("org.springframework:spring-jdbc:$springVersion")
-    compileOnly("org.springframework:spring-web:$springVersion")
-    testImplementation("org.springframework:spring-jdbc:$springVersion")
+    compileOnly("org.springframework:spring-jdbc")
+    compileOnly("org.springframework:spring-web")
+    testImplementation("org.springframework:spring-jdbc")
     testImplementation("org.hibernate:hibernate-validator:$hibernateValidatorVersion")
-    testRuntimeOnly("com.h2database:h2:$h2Version")
+    testRuntimeOnly("com.h2database:h2")
 }
 
 //compileGroovy.groovyOptions.forkOptions.jvmArgs = ['-Xdebug', '-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005']
