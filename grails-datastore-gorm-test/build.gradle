@@ -2,11 +2,11 @@ dependencies {
     api project(":grails-datastore-gorm"),
             project(":grails-datastore-core")
 
-    implementation "com.github.ben-manes.caffeine:caffeine:$caffeineVersion"
+    implementation "com.github.ben-manes.caffeine:caffeine"
     testImplementation project(":grails-datastore-gorm-rx")
     testImplementation project(":grails-datastore-gorm-tck")
     testImplementation "org.apache.groovy:groovy-json:$groovyVersion"
-    testRuntimeOnly "org.springframework:spring-aop:$springVersion"
+    testRuntimeOnly "org.springframework:spring-aop"
 }
 
 //compileTestGroovy.groovyOptions.forkOptions.jvmArgs = ['-Xdebug', '-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005']
